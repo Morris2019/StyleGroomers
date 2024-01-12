@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             x:Class="UrbanStyleGroomers.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            
+            <Color x:Key="LabelColor">#000000</Color>
+            <Color x:Key="WhiteFrameColor">#FFFFFF</Color>
+            <Color x:Key="WhiteColor">#FFFFFF</Color>
+            <Color x:Key="BlackColor">#000000</Color>
+            
+            <!-- FONTS -->
+            <OnPlatform x:Key="MontserratRegular"
+                        x:TypeArguments="x:String"
+                        Android="Montserrat-Regular.ttf#Montserrat"
+                        iOS="Montserrat-Regular" />
+
+
+            <OnPlatform x:Key="MontserratBold"
+                        x:TypeArguments="x:String"
+                        Android="Montserrat-Bold.ttf#Montserrat"
+                        iOS="Montserrat-Bold" />
+
+            <Style TargetType="Label">
+            <Setter Property="FontFamily" Value="FontMontserratRegular" />
+                <Setter Property="TextColor" Value="#000000" />
+              </Style>
+            <Color x:Key="BoxAshColor">#B5B5B5</Color>
+             <Color x:Key="ThemeBlueColor">#043C7C</Color>
+            <Color x:Key="BackgroundColor">#FFFFFF</Color>
+             <Color x:Key="ButtonBackGround">#043C7C</Color>
+             <Color x:Key="ButtontTextColor">#FFFFFF</Color>
+             <Color x:Key="LabelTextColor">#000000</Color>
+             <Color x:Key="FrameBackGroundColor">#FFFFFF</Color>
+             <Color x:Key="EntryTextColor">#000000</Color>
+             <Color x:Key="EntryPlaceTextColor">#000000</Color>
+             <Color x:Key="NavItemSelected">#043C7C</Color>
+             <Color x:Key="NavItemsColor">#000000</Color>
+             <Color x:Key="NavBackgroundColor">#FOEFFF</Color>
+             <Color x:Key="BuyButtonbackground">#FOEFFF</Color>
+             <Color x:Key="BuyButtonTextColor">#043C7C</Color>
+              <Color x:Key="FramBackground">#f7f8f9</Color>
+           
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

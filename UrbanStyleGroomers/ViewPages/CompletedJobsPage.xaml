@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:pageModel="clr-namespace:UrbanStyleGroomers.Model"
+    xmlns:renderers="clr-namespace:UrbanStyleGroomers.Renderer"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:PageViewModel="clr-namespace:UrbanStyleGroomers.ViewModels"
+    mc:Ignorable="d"
+    NavigationPage.HasNavigationBar="False"
+    BackgroundColor="{StaticResource BackgroundColor}"
+    x:DataType="PageViewModel:GroomersJobsViewModel"
+    x:Class="UrbanStyleGroomers.ViewPages.CompletedJobsPage">
+    
+     
+
+     <Grid>
+   
+        <Grid RowDefinitions="Auto, Auto, Auto, *" >
+
+            <Grid ColumnDefinitions="Auto, *, Auto"
+                  RowDefinitions="Auto,Auto"
+                  Padding="0,20,0,10">
+
+                <StackLayout Orientation="Horizontal" Grid.Column="0">
+
+                    <ImageButton Source="baseline_arrow_back_ios_black_48"
+                                 BackgroundColor="Transparent"
+                                 VerticalOptions="Center"
+                                 Margin="20,0,0,0"
+                                 HeightRequest="24"
+                                 WidthRequest="24"
+                                 Clicked="BackButton"/>
+
+                    <Label Text="Completed Jobs"
+                           TextColor="#2D2942"
+                           FontSize="20"
+                           FontAttributes="None" 
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"/>
+                </StackLayout>
+                 <BoxView
+                    Grid.Column="0"
+                    Grid.ColumnSpan="3"
+                    Grid.Row="1"
+                    Margin="25,0,15,0"
+                    HeightRequest="1"
+                    HorizontalOptions="Fill"
+                    BackgroundColor="#858585"/>
+            </Grid>
+
+          <RefreshView
+                  Refreshing="CompletedRefresh_Refreshing"
+                  x:Name="CompletedRefresh"
+                  Grid.Row="1"
+                  RefreshColor="{StaticResource ButtonBackGround}">
+
+             <CollectionView x:Name="UranActivity"
+                             Margin="0,15,0,0"
+                             Opacity="1"
+                             SelectionChanged="UranActivity_SelectionChanged"
+                             SelectionMode="Single" >
+
+                      <CollectionView.ItemsLayout>
+                       <GridItemsLayout Orientation="Vertical"
+                                        Span="1"
+                                        HorizontalItemSpacing="10"
+                                        VerticalItemSpacing="10"/>
+                    </CollectionView.ItemsLayout>
+                 <CollectionView.ItemTemplate>
+                     <DataTemplate x:DataType="pageModel:Urbanuserbookings">
+                         <StackLayout>
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup Name="CommonStates">                        
+                                        <VisualState Name="Selected">
+                                            <VisualState.Setters>
+                                                <Setter Property="BackgroundColor"
+                                                        Value="{StaticResource BackgroundColor}" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+
+                          <pancake:PancakeView
+                                HeightRequest="55">
+
+                                <StackLayout
+                                    Padding="15,0,15,0">
+
+                                    <Grid ColumnDefinitions="Auto,Auto,*" >
+
+                                        <BoxView
+                                                WidthRequest="10"
+                                                Grid.Column="0"
+                                                HeightRequest="10"
+                                                CornerRadius="6"
+                                                BackgroundColor="#32CD32"
+                                                VerticalOptions="Center"/>
+
+                                            <Label LineBreakMode="NoWrap"
+                                                MaxLines="2"
+                                               Grid.Column="1"
+                                                HorizontalOptions="StartAndExpand"
+                                                VerticalOptions="CenterAndExpand">
+
+                                               <Label.FormattedText>
+                                                   <FormattedString>
+
+                                                       <Span Text="{Binding tax_name}"
+                                                            TextColor="{StaticResource LabelTextColor}"
+                                                            FontSize="18"
+                                                             
+                                                            FontAttributes="None"/>
+
+                                                       <Span Text=" at "
+                                                            TextTransform="None"
+                                                            TextColor="{StaticResource LabelTextColor}"
+                                                            FontSize="18"  />
+
+                                                        <Span Text="{Binding date_time ,  StringFormat='{0:d}'}"
+                                                              FontSize="18"
+                                                              TextTransform="Lowercase"
+                                                              TextColor="{StaticResource LabelTextColor}"  />
+
+                                                    </FormattedString>
+                                             </Label.FormattedText>
+                                        </Label>
+
+                                        <Label
+                                            Grid.Column="2"
+                                            HorizontalTextAlignment="End"
+                                            FontSize="16"
+                                            VerticalOptions="CenterAndExpand"
+                                            HorizontalOptions="End"
+                                            TextColor="#32CD32"
+                                            FontAttributes="None"
+                                            Text="{Binding status}"/>
+                                </Grid>
+                            
+                                <BoxView
+                                    HeightRequest="1"
+                                    Margin="8,0,0,0"
+                                    HorizontalOptions="Fill"
+                                    Color="#858585"/>
+
+                             </StackLayout>
+                        </pancake:PancakeView> 
+                             </StackLayout>
+                     </DataTemplate>
+                 </CollectionView.ItemTemplate>  
+            </CollectionView>
+           </RefreshView>
+
+            <StackLayout Orientation="Vertical" Grid.Row="3"
+                         IsVisible="false"
+                         x:Name="emptyListLayout"
+                         VerticalOptions="CenterAndExpand">
+
+                 <pancake:PancakeView
+                        BackgroundColor="{StaticResource ButtonBackGround}"
+                        Border="{pancake:BorderMarkup Color=#ffffff, Thickness='1'}"
+                        CornerRadius="4"
+                        HeightRequest="50"
+                        Padding="20,0,20,0"
+                        HorizontalOptions="CenterAndExpand">
+                      <pancake:PancakeView.GestureRecognizers>
+                          <TapGestureRecognizer Tapped="CompletedReload" />
+                      </pancake:PancakeView.GestureRecognizers>
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="20"
+                                HorizontalOptions="CenterAndExpand"
+                                Text="Retry"
+                                TextColor="White"
+                                VerticalOptions="CenterAndExpand" />
+
+                   </pancake:PancakeView>
+                 <Label
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        x:Name="emptyList"
+                        VerticalOptions="StartAndExpand"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="No Completed Jobs Available"
+                        TextColor="{StaticResource ButtonBackGround}" />
+            </StackLayout>
+        </Grid>
+     </Grid>
+   
+</ContentPage>

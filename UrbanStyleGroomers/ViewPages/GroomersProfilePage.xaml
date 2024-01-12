@@ -1,0 +1,293 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:renderers="clr-namespace:UrbanStyleGroomers.Renderer"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:tabs="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:pageModel="clr-namespace:UrbanStyleGroomers.Model"
+    xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:viewModel="clr-namespace:UrbanStyleGroomers.ViewModels"
+    mc:Ignorable="d"
+    NavigationPage.HasNavigationBar="False"
+    BackgroundColor="{StaticResource BackgroundColor}"
+    x:Class="UrbanStyleGroomers.ViewPages.GroomersProfilePage">
+
+     <ContentPage.BindingContext>
+        <viewModel:GroomersProfilePageViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid>
+       <ScrollView>
+        <Grid RowDefinitions="60, Auto, Auto, Auto,Auto,Auto" >
+        
+            <StackLayout Orientation="Horizontal"
+                         Grid.Row="0">
+                <Grid ColumnDefinitions="Auto, *,*,*,* ,*,*" >
+
+                    <StackLayout Orientation="Horizontal">
+                        <ImageButton Source="baseline_arrow_back_ios_black_48"
+                                     BackgroundColor="Transparent"
+                                     VerticalOptions="Center"
+                                     Margin="20,0,0,0"
+                                     Grid.Column="0"
+                                     HeightRequest="24"
+                                     WidthRequest="24"
+                                     Clicked="BackButton"/>
+
+                        <Label Text="Profile"
+                               TextColor="#2D2942"
+                               FontSize="20"
+                               Grid.Column="1"
+                               FontAttributes="Bold" 
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center"/>
+                    </StackLayout>
+      
+                  </Grid>
+            </StackLayout>
+
+                    <StackLayout
+                                Orientation="Vertical"
+                                Margin="0"
+                                Padding="0"
+                                Grid.Row="1"
+                                HorizontalOptions="CenterAndExpand"
+                                VerticalOptions="CenterAndExpand">
+                                                 
+                        <Grid RowDefinitions="Auto,Auto"
+                            ColumnDefinitions="Auto,Auto">
+                            <Frame x:Name="circleFrame"
+                                   HasShadow="False"
+                                   Padding="0"
+                                   Margin="0"
+                                   CornerRadius="130"
+                                   HeightRequest="150"
+                                   WidthRequest="150"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center"
+                                   BackgroundColor="{StaticResource BackgroundColor}">
+
+                                    <ffimage:CachedImage
+                                            x:Name="ProfileImage"
+                                            LoadingPlaceholder="LoaderImage"
+                                            ErrorPlaceholder="ErrorImage"
+                                            HorizontalOptions="CenterAndExpand"
+                                            CacheDuration="50"
+                                            RetryCount="3"
+                                            RetryDelay="600"
+                                            HeightRequest="100"
+                                            WidthRequest="120"
+                                            Source="mem1"
+                                            Background="transparent" 
+                                            Aspect="AspectFill"/>
+                            </Frame>
+
+                                <ImageButton Source="baseline_edit_white_24"
+                                            BackgroundColor="{StaticResource ButtonBackGround}"
+                                            HeightRequest="40"
+                                            Margin="-20,0,0,0"
+                                            Grid.Row="0"
+                                            Grid.Column="1"
+                                            HorizontalOptions="End"
+                                            VerticalOptions="StartAndExpand"
+                                            WidthRequest="40"
+                                            Clicked="EditImage"/>
+                                </Grid>
+
+                            <StackLayout Orientation="Horizontal"
+                                        HorizontalOptions="CenterAndExpand">
+
+                            <Label Text=""
+                                   x:Name="UrbanupUsername"
+                                    FontSize="Title"
+                                    FontAttributes="Bold"
+                                    HorizontalOptions="CenterAndExpand"
+                                    TextColor="{StaticResource LabelTextColor}"/>
+
+                                <!--  <Label Text="James"
+                                    FontAttributes="Bold"
+                                    FontSize="Title"
+                                    HorizontalOptions="CenterAndExpand"
+                                    TextColor="{StaticResource LabelTextColor}"/> -->
+                            </StackLayout>
+                        <StackLayout Orientation="Horizontal"
+                                     HorizontalOptions="CenterAndExpand">
+
+                                 <Label Text="Completed Works:"
+                                        FontAttributes="None"
+                                        FontSize="Medium"
+                                        HorizontalOptions="CenterAndExpand"
+                                        TextColor="{StaticResource LabelTextColor}"/>
+
+                                <Label x:Name="GroomerCompleted"
+                                    FontAttributes="Bold"
+                                    FontSize="Medium"
+                                    HorizontalOptions="CenterAndExpand"
+                                    TextColor="{StaticResource LabelTextColor}"/>
+                            </StackLayout>
+
+                    <pancake:PancakeView
+                        BackgroundColor="{StaticResource ButtonBackGround}"
+                        Border="{pancake:BorderMarkup Color=#ffffff, Thickness='1'}"
+                        CornerRadius="4"
+                        HeightRequest="30"
+                        HorizontalOptions="FillAndExpand">
+                        <pancake:PancakeView.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="UpdateUrbanProfile" />
+                        </pancake:PancakeView.GestureRecognizers>
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            HorizontalOptions="CenterAndExpand"
+                            Text="Update Profile"
+                            TextColor="White"
+                            VerticalOptions="CenterAndExpand" />
+
+                    </pancake:PancakeView>
+
+                </StackLayout>
+               
+                    <Label  HorizontalTextAlignment="Center"
+                            Grid.Row="2"
+                            TextColor="#fdcc0d"
+                            HorizontalOptions="Center">
+
+                                <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span x:Name="MyStar1" FontSize="34"   FontFamily="LocalIcons" >
+                                                    <Span.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="Rating1"/>
+                                                    </Span.GestureRecognizers>
+                                                </Span>
+                                                <Span x:Name="MyStar2" FontSize="34"   FontFamily="LocalIcons">
+                                                    <Span.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="Rating2"/>
+                                                    </Span.GestureRecognizers>
+                                                </Span>
+                                                <Span x:Name="MyStar3" FontSize="34"   FontFamily="LocalIcons">
+                                                    <Span.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="Rating3"/>
+                                                    </Span.GestureRecognizers>
+                                                </Span>
+                                                <Span x:Name="MyStar4" FontSize="34"   FontFamily="LocalIcons">
+                                                        <Span.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="Rating4"/>
+                                                    </Span.GestureRecognizers>
+                                                </Span>
+                                                <Span x:Name="MyStar5"  FontSize="34"  FontFamily="LocalIcons">
+                                                <Span.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="Rating5"/>
+                                                </Span.GestureRecognizers>
+                                                </Span>
+                                            </FormattedString>
+                                    </Label.FormattedText>
+                            </Label>
+
+                
+                <StackLayout
+                         Grid.Row="3"
+                         Margin="0,-10,0,0"
+                         Grid.RowSpan="3">
+        
+                 <tabs:TabView>
+
+                <tabs:TabViewItem Text="Gallery"
+                                   TextColor="{StaticResource LabelTextColor}"
+                                   TextColorSelected="{StaticResource LabelTextColor}"
+                                   FontSize="18"
+                                   FontSizeSelected="18"
+                                   FontAttributes="Bold">
+                    <tabs:TabViewItem.Content>
+                        <StackLayout
+                            Margin="30,0,30,0">
+
+                             <BoxView HeightRequest="1"
+                                      WidthRequest="120"
+                                      HorizontalOptions="CenterAndExpand"
+                                      BackgroundColor="{StaticResource ButtonBackGround}"/>
+
+                        <CollectionView x:Name="GroomersProfile"
+                                ItemsSource="{Binding profileList}"
+                                Opacity="1"
+                                Margin="0,20,0,0"
+                                SelectionMode="Single">
+                           <CollectionView.ItemsLayout>
+                                 <GridItemsLayout Orientation="Vertical"
+                                            Span="2"
+                                            HorizontalItemSpacing="10"
+                                            VerticalItemSpacing="10"/>
+                                 </CollectionView.ItemsLayout>
+                                <CollectionView.ItemTemplate>
+                                     <DataTemplate>
+                                          <StackLayout>
+
+                                                <VisualStateManager.VisualStateGroups>
+                                                    <VisualStateGroup Name="CommonStates">                        
+                                                        <VisualState Name="Selected">
+                                                            <VisualState.Setters>
+                                                                <Setter Property="BackgroundColor" Value="#f5f5f5" />
+                                                            </VisualState.Setters>
+                                                        </VisualState>
+                                                    </VisualStateGroup>
+                                                </VisualStateManager.VisualStateGroups>
+
+                                              <pancake:PancakeView
+                                                            CornerRadius="10"
+                                                            HeightRequest="120"
+                                                            WidthRequest="100"
+                                                            Margin="0"
+                                                            Padding="2"
+                                                            Border="{pancake:BorderMarkup Color=#f7f8f9, Thickness='1'}"
+                                                            BackgroundColor="#f7f8f9">
+
+                                                      <ffimage:CachedImage
+                                                                    Source="{Binding ImageURL}"
+                                                                    LoadingPlaceholder="LoaderImage"
+                                                                    ErrorPlaceholder="ErrorImage"
+                                                                    CacheDuration="50"
+                                                                    RetryCount="3"
+                                                                    RetryDelay="600"
+                                                                    BackgroundColor="{StaticResource BackgroundColor}"
+                                                                    HeightRequest="120"
+                                                                    WidthRequest="120"
+                                                                    Aspect="Fill"/>
+                                                            
+                                              </pancake:PancakeView>
+                                          </StackLayout>
+                                      </DataTemplate>
+                                 </CollectionView.ItemTemplate>
+                        </CollectionView>
+                            </StackLayout>
+                    </tabs:TabViewItem.Content>
+                </tabs:TabViewItem>
+
+                </tabs:TabView>
+               
+                </StackLayout>
+                  <pancake:PancakeView
+                                BackgroundColor="{StaticResource ButtonBackGround}"
+                                Border="{pancake:BorderMarkup Color=#ffffff, Thickness='1'}"
+                                CornerRadius="4"
+                                Margin="30,0,30,50"
+                                HeightRequest="50"
+                                Grid.Row="6"
+                                VerticalOptions="EndAndExpand" >
+                                <pancake:PancakeView.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="ImageUploads" />
+                                </pancake:PancakeView.GestureRecognizers>
+
+                                <Label
+                                    FontAttributes="None"
+                                    FontSize="16"
+                                    HorizontalOptions="CenterAndExpand"
+                                    Text="Upload pictures of works done"
+                                    TextColor="{StaticResource WhiteColor}"
+                                    VerticalOptions="CenterAndExpand" />
+                            </pancake:PancakeView>
+             </Grid>
+           </ScrollView>
+   </Grid>
+</ContentPage>

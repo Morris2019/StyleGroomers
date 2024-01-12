@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:renderers="clr-namespace:UrbanStyleGroomers.Renderer"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    NavigationPage.HasNavigationBar="False"
+    BackgroundColor="{StaticResource BackgroundColor}"
+    x:Class="UrbanStyleGroomers.ViewPages.GroomerProfileUpdate">
+
+      <Grid>
+       <ScrollView>
+        <Grid RowDefinitions="60, Auto"
+              RowSpacing="20">
+        
+            <StackLayout Orientation="Horizontal"
+                         Grid.Row="0">
+                <Grid ColumnDefinitions="Auto, *,*,*,* ,*,*" >
+
+                    <StackLayout Orientation="Horizontal">
+                        <ImageButton Source="baseline_arrow_back_ios_black_48"
+                                     BackgroundColor="Transparent"
+                                     VerticalOptions="Center"
+                                     Margin="20,0,0,0"
+                                     Grid.Column="0"
+                                     HeightRequest="24"
+                                     WidthRequest="24"
+                                     Clicked="BackButton"/>
+
+                        <Label Text="Update Profile"
+                               TextColor="#2D2942"
+                               FontSize="20"
+                               Grid.Column="1"
+                               FontAttributes="Bold" 
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center"/>
+                    </StackLayout>
+          
+                  </Grid>
+            </StackLayout>
+
+           
+           
+            <StackLayout Orientation="Vertical"
+                         Grid.Row="1"
+                         Padding="20"
+                         Grid.RowSpan="2"
+                         VerticalOptions="Center">
+
+                <Frame x:Name="circleFrame"
+                       HasShadow="False"
+                       Padding="0"
+                       Margin="0"
+                       CornerRadius="130"
+                       HeightRequest="150"
+                       WidthRequest="150"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       BackgroundColor="{StaticResource BackgroundColor}">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="UploadUserImage"/>
+                    </Frame.GestureRecognizers>
+                       <Image
+                            x:Name="userProfille"
+                            Margin="0"
+                            Aspect="AspectFill"/>
+                </Frame>
+
+                <pancake:PancakeView
+                            Padding="10,0,0,0"
+                            BackgroundColor="White"
+                            Border="{pancake:BorderMarkup Color={StaticResource ButtonBackGround}, Thickness='1'}"
+                            CornerRadius="10"
+                            HeightRequest="50">
+                    <renderers:BorderlessEntry
+                            x:Name="UrbanupUsername"
+                            ClearButtonVisibility="WhileEditing"
+                            FontSize="18"
+                            HorizontalOptions="FillAndExpand"
+                            Keyboard="Text"
+                            IsPassword="False"
+                            Placeholder="First name "
+                            PlaceholderColor="#99A1B3"
+                            TextColor="#484848"  />
+                </pancake:PancakeView>
+
+                <pancake:PancakeView
+                            Padding="10,0,0,0"
+                            BackgroundColor="White"
+                            Border="{pancake:BorderMarkup Color={StaticResource ButtonBackGround}, Thickness='1'}"
+                            CornerRadius="10"
+                            HeightRequest="50">
+                    <renderers:BorderlessEntry
+                            x:Name="UrbanupUsermail"
+                            ClearButtonVisibility="WhileEditing"
+                            FontSize="18"
+                            HorizontalOptions="FillAndExpand"
+                            Keyboard="Email"
+                            IsPassword="False"
+                            IsReadOnly="True"
+                            Placeholder="Email "
+                            TextColor="#484848">
+                            <Entry.Behaviors >
+                            <xct:MultiValidationBehavior x:Name="myMultiValidation">
+                                <xct:EmailValidationBehavior x:Name="myEmailValidation"  Flags="ValidateOnUnfocusing" xct:MultiValidationBehavior.Error="Email is not valid"/>
+                            </xct:MultiValidationBehavior>
+                        </Entry.Behaviors>
+                    
+                    </renderers:BorderlessEntry>
+                </pancake:PancakeView>
+
+                <pancake:PancakeView
+                            Padding="10,0,0,0"
+                            BackgroundColor="White"
+                            Border="{pancake:BorderMarkup Color={StaticResource ButtonBackGround}, Thickness='1'}"
+                            CornerRadius="10"
+                            HeightRequest="50">
+                    <renderers:BorderlessEntry
+                            x:Name="UserupPhoneNumber"
+                            ClearButtonVisibility="WhileEditing"
+                            FontSize="18"
+                            HorizontalOptions="FillAndExpand"
+                            Keyboard="Telephone"
+                            IsPassword="False"
+                            Placeholder="Mobile Number "
+                            PlaceholderColor="#99A1B3"
+                            TextColor="#484848"  />
+                </pancake:PancakeView>
+
+                 <ActivityIndicator IsRunning="False"
+                            Color="{StaticResource ButtonBackGround}"
+                            x:Name="RegIndicator"/>
+
+
+                <pancake:PancakeView
+                    BackgroundColor="{StaticResource ButtonBackGround}"
+                    Border="{pancake:BorderMarkup Color=#ffffff, Thickness='1'}"
+                    CornerRadius="4"
+                    HeightRequest="50"
+                    HorizontalOptions="FillAndExpand">
+                    <pancake:PancakeView.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="UpdateProfile" />
+                    </pancake:PancakeView.GestureRecognizers>
+                    <Label
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            HorizontalOptions="CenterAndExpand"
+                            Text="Update"
+                            TextColor="White"
+                            VerticalOptions="CenterAndExpand" />
+
+                </pancake:PancakeView>
+
+            </StackLayout>
+         
+           
+        </Grid>
+    </ScrollView>
+</Grid>
+    </ContentPage>

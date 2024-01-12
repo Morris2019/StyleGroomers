@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:renderers="clr-namespace:UrbanStyleGroomers.Renderer"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    NavigationPage.HasNavigationBar="False"
+    BackgroundColor="{StaticResource BackgroundColor}"
+    x:Class="UrbanStyleGroomers.ViewPages.GroomersRegisterPage">
+
+    <ScrollView>
+        <Grid VerticalOptions="FillAndExpand" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackLayout Grid.Row="0"
+                     Orientation="Vertical"
+                     Padding="20"
+                     BackgroundColor="{StaticResource BackgroundColor}">
+
+                <Label Text="Sign Up"
+                    VerticalOptions="Start"
+                    HorizontalOptions="StartAndExpand"
+                    TextColor="{StaticResource LabelTextColor}"
+                    FontSize="Title"
+                    FontAttributes="Bold"/>
+
+                <Label Text="Enter your details to create an account"
+                    VerticalOptions="Start"
+                    HorizontalOptions="StartAndExpand"
+                    TextType="Text"
+                    TextColor="{StaticResource LabelTextColor}"
+                    FontSize="Small"  />
+
+            </StackLayout>
+            <ActivityIndicator IsRunning="False"
+                            Grid.Row="3"
+                            Color="{StaticResource ButtonBackGround}"
+                            x:Name="RegIndicator"/>
+
+            <StackLayout Grid.Row="1" BackgroundColor="Transparent">
+                <ImageButton Source="UrbanScissors"
+                                BackgroundColor="Transparent"
+                                Background="Transparent"
+                                VerticalOptions="Center"
+                                WidthRequest="100"
+                                HeightRequest="70" />
+            </StackLayout>
+            <StackLayout Orientation="Vertical" Grid.Row="2" Padding="20">
+               
+
+                <pancake:PancakeView
+                            Padding="10,0,0,0"
+                            BackgroundColor="White"
+                            Border="{pancake:BorderMarkup Color={StaticResource ButtonBackGround}, Thickness='1'}"
+                            CornerRadius="10"
+                            HeightRequest="50">
+                    <renderers:BorderlessEntry
+                            x:Name="UrbanUsername"
+                            ClearButtonVisibility="WhileEditing"
+                            FontSize="18"
+                            HorizontalOptions="FillAndExpand"
+                            Keyboard="Text"
+                            IsPassword="False"
+                            Placeholder="First name "
+                            PlaceholderColor="#99A1B3"
+                            TextColor="#484848"  />
+                </pancake:PancakeView>
+
+                <pancake:PancakeView
+                            Padding="10,0,0,0"
+                            BackgroundColor="White"
+                            Border="{pancake:BorderMarkup Color={StaticResource ButtonBackGround}, Thickness='1'}"
+                            CornerRadius="10"
+                            HeightRequest="50">
+                    <renderers:BorderlessEntry
+                            x:Name="UrbanUsermail"
+                            ClearButtonVisibility="WhileEditing"
+                            FontSize="18"
+                            HorizontalOptions="FillAndExpand"
+                            Keyboard="Email"
+                            IsPassword="False"
+                            Placeholder="Email "
+                            PlaceholderColor="#99A1B3"
+                            TextColor="#484848">
+                            <Entry.Behaviors >
+                            <xct:MultiValidationBehavior x:Name="myMultiValidation">
+
+                                <xct:EmailValidationBehavior x:Name="myEmailValidation"  Flags="ValidateOnUnfocusing" xct:MultiValidationBehavior.Error="Email is not valid"/>
+
+                            </xct:MultiValidationBehavior>
+                        </Entry.Behaviors>
+                    </renderers:BorderlessEntry>
+                </pancake:PancakeView>
+
+                <pancake:PancakeView
+                            Padding="10,0,0,0"
+                            BackgroundColor="White"
+                            Border="{pancake:BorderMarkup Color={StaticResource ButtonBackGround}, Thickness='1'}"
+                            CornerRadius="10"
+                            HeightRequest="50">
+                    <renderers:BorderlessEntry
+                            x:Name="UrbanUserPhoneNumber"
+                            ClearButtonVisibility="WhileEditing"
+                            FontSize="18"
+                            HorizontalOptions="FillAndExpand"
+                            Keyboard="Telephone"
+                            IsPassword="False"
+                            Placeholder="Mobile Number "
+                            PlaceholderColor="#99A1B3"
+                            TextColor="#484848"  />
+                </pancake:PancakeView>
+
+                <pancake:PancakeView
+                            Padding="10,0,0,0"
+                            BackgroundColor="White"
+                            Border="{pancake:BorderMarkup Color={StaticResource ButtonBackGround}, Thickness='1'}"
+                            CornerRadius="10"
+                            HeightRequest="50">
+                    <renderers:BorderlessEntry
+                           x:Name="UrbanUserPassword"
+                            ClearButtonVisibility="WhileEditing"
+                            FontSize="18"
+                            HorizontalOptions="FillAndExpand"
+                            Keyboard="Text"
+                            IsPassword="True"
+                            Placeholder="Password "
+                            PlaceholderColor="#99A1B3"
+                            TextColor="#484848"  />
+                </pancake:PancakeView>
+
+                <pancake:PancakeView
+                                Padding="10,0,0,0"
+                                BackgroundColor="White"
+                                Border="{pancake:BorderMarkup Color={StaticResource ButtonBackGround}, Thickness='1'}"
+                                CornerRadius="10"
+                                HeightRequest="50">
+                    <renderers:BorderlessEntry
+                                x:Name="UrbanPassconfirm"
+                                ClearButtonVisibility="WhileEditing"
+                                FontSize="18"
+                                HorizontalOptions="FillAndExpand"
+                                Keyboard="Text"
+                                IsPassword="True"
+                                Placeholder="Confirm Password "
+                                PlaceholderColor="#99A1B3"
+                                TextColor="#484848"  />
+                </pancake:PancakeView>
+                <Label LineBreakMode="NoWrap"
+                      MaxLines="2"
+                      Padding="10"
+                      HorizontalOptions="CenterAndExpand"
+                      VerticalOptions="StartAndExpand">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="By continuing you agree to our "
+                                TextColor="{StaticResource LabelTextColor}"
+                                FontSize="Small"
+                                FontAttributes="None"/>
+
+                            <Span Text="Terms of Service"
+                                TextTransform="None"
+                                TextColor="{StaticResource ButtonBackGround}"
+                                FontSize="Small"  />
+
+                            <Span Text=" and "
+                                TextColor="{StaticResource LabelTextColor}"
+                                FontSize="Small"  />
+
+                            <Span Text="Privacy Policy"
+                                TextColor="{StaticResource ButtonBackGround}"
+                                FontSize="Small"  />
+
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <pancake:PancakeView
+                    BackgroundColor="{StaticResource ButtonBackGround}"
+                    Border="{pancake:BorderMarkup Color=#ffffff, Thickness='1'}"
+                    CornerRadius="4"
+                    HeightRequest="50"
+                    HorizontalOptions="FillAndExpand">
+                    <pancake:PancakeView.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="SignUpUsers" />
+                    </pancake:PancakeView.GestureRecognizers>
+                    <Label
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            HorizontalOptions="CenterAndExpand"
+                            Text="Sign Up"
+                            TextColor="White"
+                            VerticalOptions="CenterAndExpand" />
+
+                </pancake:PancakeView>
+
+            </StackLayout>
+            <StackLayout Grid.Row="3"
+                        BackgroundColor="Transparent"
+                        Margin="0,0,0,-30">
+                <ImageButton Source="Logo"
+                                BackgroundColor="Transparent"
+                                Background="Transparent"
+                                VerticalOptions="Center"
+                                WidthRequest="200"
+                                HeightRequest="130" />
+            </StackLayout>
+
+            <StackLayout Grid.Row="4"
+                          Orientation="Horizontal"
+                          HorizontalOptions="CenterAndExpand">
+
+                <Label 
+                    Text="Already have and account?"
+                    Margin="0,0,0,20"
+                    TextColor="{StaticResource LabelTextColor}"
+                    VerticalOptions="EndAndExpand"
+                    HorizontalOptions="Start"
+                    FontSize="Small"/>
+
+                <Label x:Name="UserAccount"
+                    Text="SIGN IN"
+                    FontSize="Medium"
+                    Margin="0,0,0,20"
+                    FontAttributes="Bold"
+                    TextColor="{StaticResource ButtonBackGround}"
+                    VerticalOptions="EndAndExpand"
+                    HorizontalOptions="Start">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="SignInPage"/>
+                    </Label.GestureRecognizers>
+
+                </Label>
+            </StackLayout>
+        </Grid>
+    </ScrollView>
+</ContentPage>

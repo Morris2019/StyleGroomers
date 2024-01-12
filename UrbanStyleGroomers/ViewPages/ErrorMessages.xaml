@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<popups:Popup
+    xmlns:popups="http://xamarin.com/schemas/2020/toolkit"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    NavigationPage.HasNavigationBar="False"
+    xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    Opacity="0"
+    mc:Ignorable="d"
+    Size="350,200"
+    x:Class="UrbanStyleGroomers.ViewPages.ErrorMessages">
+
+
+             <Grid RowDefinitions="*, *" Padding="10"
+                   RowSpacing="20">
+
+                 <StackLayout Orientation="Vertical"
+                              HorizontalOptions="CenterAndExpand"
+                              VerticalOptions="Center"
+                              Grid.Row="0">
+                      <Label
+                            FontAttributes="Bold"
+                            x:Name="ErrorTitle"
+                            FontSize="20"
+                            HorizontalOptions="CenterAndExpand"
+                            TextColor="#090980"
+                            VerticalOptions="CenterAndExpand" />
+     
+
+                     <Label
+                            FontAttributes="None"
+                            x:Name="ErrorMessage"
+                            FontSize="18"
+                            HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center"
+                            TextColor="{StaticResource ButtonBackGround}" />
+                     </StackLayout>
+
+                  <pancake:PancakeView
+                            Padding="0"
+                            BackgroundColor="{StaticResource ButtonBackGround}"
+                            Grid.Row="1"
+                            Margin="20,0,20,0"
+                            HeightRequest="40"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="EndAndExpand"
+                            Border="{pancake:BorderMarkup Color={StaticResource BackgroundColor}, Thickness='1'}"
+                            CornerRadius="30">
+                      <pancake:PancakeView.GestureRecognizers>
+                          <TapGestureRecognizer Tapped="ReturnEroorMsg"/>
+                      </pancake:PancakeView.GestureRecognizers>
+                      <Label
+                            FontAttributes="Bold"
+                            x:Name="ErrorAction"
+                            FontSize="20"
+                            Text="OK"
+                            HorizontalOptions="CenterAndExpand"
+                            TextColor="White"
+                            VerticalOptions="CenterAndExpand" />
+                 </pancake:PancakeView>
+             </Grid>
+             
+     
+</popups:Popup>

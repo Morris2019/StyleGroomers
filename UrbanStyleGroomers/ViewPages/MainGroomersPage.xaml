@@ -1,0 +1,288 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:renderers="clr-namespace:UrbanStyleGroomers.Renderer"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:PageViewModel="clr-namespace:UrbanStyleGroomers.ViewModels"
+    xmlns:pageModel="clr-namespace:UrbanStyleGroomers.Model"
+    xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+    mc:Ignorable="d"
+    NavigationPage.HasNavigationBar="False"
+    BackgroundColor="{StaticResource BackgroundColor}"
+    x:Class="UrbanStyleGroomers.ViewPages.MainGroomersPage">
+
+     <ContentPage.BindingContext>
+        <PageViewModel:MenuViewModel />
+    </ContentPage.BindingContext>
+    <ScrollView HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand">
+   <Grid>
+        <Grid RowDefinitions="Auto, 60, Auto, Auto" >
+            <Grid ColumnDefinitions="Auto, *, Auto"
+                  Padding="0,10,0,0"
+                  RowSpacing="20">
+
+                <ImageButton Source="baseline_notes_black_48"
+                             Background="Transparent"
+                             VerticalOptions="Center"
+                             Margin="20,0,0,0"
+                             HeightRequest="40"
+                             WidthRequest="40"
+                             Clicked="menuButton"/>
+                 <Frame x:Name="circleFrame"
+                        HasShadow="False"
+                        Padding="0"
+                        Margin="0,10,10,0"
+                        CornerRadius="130"
+                        HeightRequest="60"
+                        WidthRequest="60"
+                        Grid.Column="2"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"
+                        BackgroundColor="{StaticResource BackgroundColor}">
+
+                                <Image x:Name="ProfileImages"
+                                       Aspect="AspectFill"
+                                       />
+                     </Frame>
+            </Grid>
+            <StackLayout Orientation="Vertical"
+                         Padding="20,0,0,0"
+                         VerticalOptions="Start"
+                         Grid.Row="1">
+      
+                    <StackLayout
+                        Orientation="Horizontal"
+                            Padding="10">
+
+                        <Label Text="Hi, "
+                                VerticalOptions="Start"
+                                HorizontalOptions="Start"
+                                FontFamily="FontMontserratSemiBold"
+                                TextColor="{StaticResource LabelTextColor}"
+                                FontSize="20"/>
+
+                        <Label
+                            x:Name="UsernameField"
+                            VerticalOptions="Start"
+                            HorizontalOptions="Start"
+                            FontFamily="FontMontserratSemiBold"
+                            TextColor="{StaticResource LabelTextColor}"
+                            FontSize="20"/>
+                    </StackLayout>
+
+                    </StackLayout>
+
+            <StackLayout Grid.Row="2"
+                         Padding="20,20,20,0">
+                <pancake:PancakeView
+                        BackgroundColor="{StaticResource WhiteColor}"
+                        Padding="20,4,0,4"
+                        Border="{pancake:BorderMarkup Color={StaticResource ButtonBackGround}, Thickness='1'}"
+                        CornerRadius="5"
+                        Margin="0,0,0,5"
+                        HeightRequest="50"
+                        HorizontalOptions="FillAndExpand">
+
+                      <pancake:PancakeView.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="PendingJobs" />
+                        </pancake:PancakeView.GestureRecognizers>  
+                    <StackLayout Orientation="Horizontal">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            HorizontalOptions="StartAndExpand"
+                            Text="View Pending Jobs"
+                            TextTransform="Uppercase"
+                            TextColor="{StaticResource ButtonBackGround}"
+                            VerticalOptions="CenterAndExpand" />
+                         <Image Source="baseline_arrow_forward_ios_black_48"
+                                Aspect="AspectFit"
+                                Margin="0,0,10,0"
+                                VerticalOptions="CenterAndExpand"
+                                HorizontalOptions="EndAndExpand"
+                                WidthRequest="30"/>
+                   </StackLayout>
+             </pancake:PancakeView>
+
+                <pancake:PancakeView
+                    BackgroundColor="{StaticResource WhiteColor}"
+                    Padding="20,4,0,4"
+                    Border="{pancake:BorderMarkup Color={StaticResource ButtonBackGround}, Thickness='1'}"
+                    CornerRadius="5"
+                    Margin="0,5,0,0"
+                    HeightRequest="50"
+                    HorizontalOptions="FillAndExpand">
+
+                   <pancake:PancakeView.GestureRecognizers>
+                      <TapGestureRecognizer Tapped="CompletedJobs" />
+                    </pancake:PancakeView.GestureRecognizers>
+                    <StackLayout Orientation="Horizontal">
+                    <Label
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            HorizontalOptions="StartAndExpand"
+                            Text="view Completed jobs"
+                            TextTransform="Uppercase"
+                            TextColor="{StaticResource ButtonBackGround}"
+                            VerticalOptions="CenterAndExpand" />
+
+                         <Image Source="baseline_arrow_forward_ios_black_48"
+                                Aspect="AspectFit"
+                                Margin="0,0,10,0"
+                                Background="Transparent"
+                                VerticalOptions="CenterAndExpand"
+                                HorizontalOptions="EndAndExpand"
+                                HeightRequest="30"/>
+                        </StackLayout>
+             </pancake:PancakeView>
+            </StackLayout>
+
+            <StackLayout Grid.Row="3"
+                         Grid.RowSpan="2"
+                         Margin="0,20,0,0"
+                         VerticalOptions="StartAndExpand"
+                         Orientation="Vertical">
+
+                <BoxView HeightRequest="2" BackgroundColor="#858585"
+                         Margin="20,0,20,0"/>
+                 <!--   <Label
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        Padding="20,0,0,0"
+                        HorizontalOptions="StartAndExpand"
+                        Text="Payments"
+                        TextTransform="None"
+                        TextColor="{StaticResource LabelTextColor}"
+                        VerticalOptions="StartAndExpand" /> -->
+
+                
+                    <Grid RowDefinitions="*,*"
+                          HeightRequest="300"
+                          Margin="30,20,30,40">
+
+                        <maps:Map
+                            x:Name="UrbanMap"
+                            TrafficEnabled="True"
+                            Grid.Row="0"
+                            Grid.RowSpan="2"
+                            IsShowingUser="True"
+                            Visual="Material"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand"/>
+
+                         <pancake:PancakeView
+                                BackgroundColor="{StaticResource ButtonBackGround}"
+                                Border="{pancake:BorderMarkup Color=#ffffff, Thickness='1'}"
+                                CornerRadius="4"
+                                Grid.Row="1"
+                                Padding="0"
+                                Margin="0,0,0,20"
+                                VerticalOptions="EndAndExpand"
+                                HeightRequest="50"
+                                HorizontalOptions="CenterAndExpand">
+
+                            <pancake:PancakeView.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OpenMaps"/>
+                            </pancake:PancakeView.GestureRecognizers>
+                            <Label
+                                FontAttributes="None"
+                                FontSize="20"
+                                Padding="20,0,20,0"
+                                TextColor="{StaticResource BackgroundColor}"
+                                HorizontalOptions="CenterAndExpand"
+                                Text="Open in Google Maps"
+                                VerticalOptions="CenterAndExpand" />
+                         </pancake:PancakeView>
+                     </Grid>
+            </StackLayout>
+
+        </Grid>
+            <Grid x:Name="MenuGrid" IsVisible="False">
+                        <BoxView x:Name="MenuOverlay"
+                                 BackgroundColor="Black"
+                                 Opacity="0.35">
+                            <BoxView.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OverlayTapped"/>
+                            </BoxView.GestureRecognizers>
+                        </BoxView>
+
+                <Grid x:Name="MenuView"
+                      WidthRequest="340"
+                      BackgroundColor="{StaticResource ButtonBackGround}" 
+                      HorizontalOptions="Start"
+                      TranslationX="-400">
+
+                  <StackLayout Orientation="Vertical"  >
+                            <CollectionView
+                                Margin="0,100,0,0"
+                                x:Name="eventList"
+                                ItemsLayout="VerticalList"
+                                SelectionMode="Single"
+                                SelectedItem="{Binding SelectedItem,Mode=TwoWay}"
+                                SelectionChangedCommand="{Binding ItemSelectedCommand,Mode=TwoWay}"
+                                ItemsSource="{Binding menulist}">
+
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackLayout>
+                                            <VisualStateManager.VisualStateGroups>
+                                                <VisualStateGroup Name="CommonStates">                        
+                                                    <VisualState Name="Selected">
+                                                        <VisualState.Setters>
+                                                            <Setter Property="BackgroundColor"
+                                                                    Value="{StaticResource ButtonBackGround}" />
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+                                                </VisualStateGroup>
+                                            </VisualStateManager.VisualStateGroups>
+                                                <pancake:PancakeView >
+                                                    <StackLayout
+                                                            Padding="10">
+
+                                                        <Label Text="{Binding Name}"
+                                                                TextColor="{StaticResource WhiteColor}"
+                                                                FontSize="20"
+                                                                Margin="30,0,0,0"
+                                                                VerticalOptions="Center"
+                                                                FontFamily="NormalFont"/>
+
+                                                        <BoxView HeightRequest="2"
+                                                                    BackgroundColor="#bebebe"
+                                                                    Margin="0" />
+                                                    </StackLayout>
+                                                </pancake:PancakeView>
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+
+                              <pancake:PancakeView
+                                BackgroundColor="{StaticResource ButtonBackGround}"
+                                Border="{pancake:BorderMarkup Color={StaticResource ButtonBackGround}, Thickness='1'}"
+                                CornerRadius="4"
+                                  Margin="0,-200,0,0"
+                                HeightRequest="50"
+                                HorizontalOptions="CenterAndExpand">
+                              <pancake:PancakeView.GestureRecognizers>
+                                  <TapGestureRecognizer Tapped="Userlogout" />
+                              </pancake:PancakeView.GestureRecognizers>
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="20"
+                                        HorizontalOptions="CenterAndExpand"
+                                        Text="Log out"
+                                        TextColor="{StaticResource BackgroundColor}"
+                                        VerticalOptions="CenterAndExpand" />
+
+                           </pancake:PancakeView>
+                      </StackLayout>
+                </Grid>
+                    
+            </Grid>
+   </Grid>
+        </ScrollView>
+</ContentPage>

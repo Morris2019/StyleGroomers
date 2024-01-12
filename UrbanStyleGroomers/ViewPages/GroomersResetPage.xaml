@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+     xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:renderers="clr-namespace:UrbanStyleGroomers.Renderer"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    NavigationPage.HasNavigationBar="False"
+    BackgroundColor="{StaticResource BackgroundColor}"
+    x:Class="UrbanStyleGroomers.ViewPages.GroomersResetPage">
+
+   <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+             
+       
+            <Image Source="forgotpassword.png"
+                   Aspect="AspectFill"
+                   HeightRequest="300"
+                   Grid.Row="0"/>
+
+        <StackLayout Orientation="Vertical" Grid.Row="1" Padding="20"
+                     Margin="15">
+
+             <Label Text="Forgot Password?"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="CenterAndExpand"
+                    TextColor="{StaticResource LabelTextColor}"
+                    FontSize="Title" >
+             </Label>
+            <Label 
+                    Text="Enter your email, we'll send you a code to reset"
+                    Margin="0,0,0,20"
+                    TextColor="{StaticResource LabelTextColor}"
+                    HorizontalOptions="CenterAndExpand"
+                    FontSize="Small"/>
+              <pancake:PancakeView
+                            Padding="10,0,0,0"
+                            BackgroundColor="White"
+                            Border="{pancake:BorderMarkup Color={StaticResource ButtonBackGround}, Thickness='1'}"
+                            CornerRadius="10"
+                            HeightRequest="50">
+                     <renderers:BorderlessEntry
+                            ClearButtonVisibility="WhileEditing"
+                            FontSize="18"
+                            HorizontalOptions="FillAndExpand"
+                            Keyboard="Email"
+                            IsPassword="True"
+                            Placeholder="Email "
+                            PlaceholderColor="#99A1B3"
+                            TextColor="#484848"  />
+               </pancake:PancakeView>
+
+             <pancake:PancakeView
+                    BackgroundColor="{StaticResource ButtonBackGround}"
+                    Border="{pancake:BorderMarkup Color=#ffffff, Thickness='1'}"
+                    Margin="0,10,0,0"
+                    CornerRadius="4"
+                    HeightRequest="50"
+                    HorizontalOptions="FillAndExpand">
+                 <pancake:PancakeView.GestureRecognizers>
+                     <TapGestureRecognizer Tapped="PassReset"/>
+                 </pancake:PancakeView.GestureRecognizers>
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            HorizontalOptions="CenterAndExpand"
+                            Text="Submit"
+                            TextColor="White"
+                            VerticalOptions="CenterAndExpand" />
+                    </pancake:PancakeView>
+
+            </StackLayout>    
+    </Grid>
+</ContentPage>

@@ -1,0 +1,69 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2244" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
+    <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
+    <PackageReference Include="Xamarin.CommunityToolkit" Version="1.3.0" />
+    <PackageReference Include="Xamarin.Forms.Maps" Version="5.0.0.2244" />
+    <PackageReference Include="Sharpnado.Shadows" Version="1.2.0" />
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
+    <PackageReference Include="Sharpnado.Forms.HorizontalListView" Version="1.8.2" />
+    <PackageReference Include="Xamarin.MediaGallery" Version="1.0.2.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Refit" Version="6.1.15" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Xamarin.Forms.PancakeView" />
+    <None Remove="Xamarin.CommunityToolkit" />
+    <None Remove="Xamarin.Forms.Maps" />
+    <None Remove="Sharpnado.Shadows" />
+    <None Remove="Xamarin.FFImageLoading.Forms" />
+    <None Remove="Sharpnado.Forms.HorizontalListView" />
+    <None Remove="Model\" />
+    <None Remove="Renderer\" />
+    <None Remove="ViewModels\" />
+    <None Remove="EmbbededFonts\" />
+    <None Remove="Converters\" />
+    <None Remove="ViewPages\" />
+    <None Remove="EmbbededFonts\materialdesignicons.ttf" />
+    <None Remove="EmbbededFonts\fontello.ttf" />
+    <None Remove="EmbbededFonts\materialicon.ttf" />
+    <None Remove="EmbbededFonts\muli-black.ttf" />
+    <None Remove="EmbbededFonts\muli-bold.ttf" />
+    <None Remove="EmbbededFonts\muli-regular.ttf" />
+    <None Remove="EmbbededFonts\opensans-semibold.ttf" />
+    <None Remove="Xamarin.MediaGallery" />
+    <None Remove="Newtonsoft.Json" />
+    <None Remove="Refit" />
+    <None Remove="ModelsServer\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Model\" />
+    <Folder Include="Renderer\" />
+    <Folder Include="ViewModels\" />
+    <Folder Include="EmbbededFonts\" />
+    <Folder Include="Converters\" />
+    <Folder Include="ViewPages\" />
+    <Folder Include="ModelsServer\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="EmbbededFonts\materialdesignicons.ttf" />
+    <EmbeddedResource Include="EmbbededFonts\fontello.ttf" />
+    <EmbeddedResource Include="EmbbededFonts\materialicon.ttf" />
+    <EmbeddedResource Include="EmbbededFonts\muli-black.ttf" />
+    <EmbeddedResource Include="EmbbededFonts\muli-bold.ttf" />
+    <EmbeddedResource Include="EmbbededFonts\muli-regular.ttf" />
+    <EmbeddedResource Include="EmbbededFonts\opensans-semibold.ttf" />
+  </ItemGroup>
+</Project>

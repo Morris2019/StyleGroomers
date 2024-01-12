@@ -1,0 +1,202 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:renderers="clr-namespace:UrbanStyleGroomers.Renderer"
+    xmlns:pageModel="clr-namespace:UrbanStyleGroomers.Model"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:PageViewModel="clr-namespace:UrbanStyleGroomers.ViewModels"
+    mc:Ignorable="d"
+    NavigationPage.HasNavigationBar="False"
+    BackgroundColor="{StaticResource BackgroundColor}"
+    x:DataType="PageViewModel:GroomersPendingViewModel"
+    x:Class="UrbanStyleGroomers.ViewPages.PendingJobsPage" >
+
+   <!-- <ContentPage.BindingContext>
+        <PageViewModel:GroomersPendingViewModel />
+    </ContentPage.BindingContext> -->
+
+    <Grid>
+   
+        <Grid RowDefinitions="Auto, Auto, Auto, *" >
+
+            <Grid ColumnDefinitions="Auto, *, Auto"
+                  RowDefinitions="Auto,Auto"
+                  Padding="0,20,0,0" >
+
+                <StackLayout Orientation="Horizontal" Grid.Column="0">
+
+                    <ImageButton
+                            Source="baseline_arrow_back_ios_black_48"
+                            BackgroundColor="Transparent"
+                            VerticalOptions="Start"
+                            HorizontalOptions="Start"
+                            Margin="20,0,0,0"
+                            HeightRequest="24"
+                            WidthRequest="24"
+                            Clicked="BackButton"/>
+
+                    <Label
+                            Text="Pending Jobs"
+                            TextColor="#2D2942"
+                            FontSize="20"
+                            FontAttributes="None" 
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center"/>
+
+                </StackLayout>
+
+                <BoxView
+                    Grid.Column="0"
+                    Grid.ColumnSpan="3"
+                    Grid.Row="1"
+                    Margin="25,0,15,0"
+                    HeightRequest="1"
+                    HorizontalOptions="Fill"
+                    BackgroundColor="#858585"/>
+
+            </Grid>
+           <RefreshView
+                  x:Name="PendingRefresh"
+                  IsRefreshing="{Binding IsRefreshing, Mode=OneWay}"
+                  Command="{Binding PendingRefreshCommand}"
+                  Grid.Row="1"
+                  RefreshColor="{StaticResource ButtonBackGround}">
+
+                <CollectionView x:Name="PendingCollection"
+                                 Margin="0,15,0,0"
+                                 Opacity="1"
+                                 ItemsSource="{Binding PendingItems}"
+                                 SelectionChanged="PendingCollection_SelectionChanged"
+                                 SelectionMode="Single" >
+
+                    <CollectionView.ItemsLayout>
+                       <GridItemsLayout Orientation="Vertical"
+                                        Span="1"
+                                        HorizontalItemSpacing="10"
+                                        VerticalItemSpacing="10"/>
+                    </CollectionView.ItemsLayout>
+                 <CollectionView.ItemTemplate>
+                     <DataTemplate x:DataType="pageModel:Urbanuserbookings">
+                         <StackLayout>
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup Name="CommonStates">                        
+                                        <VisualState Name="Selected">
+                                            <VisualState.Setters>
+                                                <Setter Property="BackgroundColor"
+                                                        Value="{StaticResource BackgroundColor}" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+
+                                <pancake:PancakeView
+                                HeightRequest="65">
+
+                                <StackLayout
+                                    Padding="15,0,15,0">
+
+                                    <Grid ColumnDefinitions="Auto,Auto,Auto" >
+
+                                        <BoxView
+                                                WidthRequest="10"
+                                                Grid.Column="0"
+                                                HeightRequest="10"
+                                                CornerRadius="6"
+                                                BackgroundColor="{StaticResource ButtonBackGround}"
+                                                VerticalOptions="Center"/>
+
+                                            <Label LineBreakMode="NoWrap"
+                                                MaxLines="4"
+                                               Grid.Column="1"
+                                                HorizontalOptions="StartAndExpand"
+                                                VerticalOptions="CenterAndExpand">
+
+                                               <Label.FormattedText>
+                                                   <FormattedString>
+
+                                                       <Span Text="{Binding tax_name}"
+                                                             
+                                                            TextColor="{StaticResource LabelTextColor}"
+                                                            FontSize="18"
+                                                             
+                                                            FontAttributes="None"/>
+
+                                                       <Span Text=" at "
+                                                            TextTransform="None"
+                                                            TextColor="{StaticResource LabelTextColor}"
+                                                            FontSize="18"  />
+
+                                                        <Span Text="{Binding date_time, StringFormat='{0:d}'}"
+                                                              FontSize="18"
+                                                              TextTransform="Lowercase"
+                                                              TextColor="{StaticResource LabelTextColor}"  />
+
+                                                    </FormattedString>
+                                             </Label.FormattedText>
+                                        </Label>
+
+                                        <Label
+                                            Grid.Column="3"
+                                            HorizontalTextAlignment="End"
+                                            FontSize="16"
+                                            VerticalOptions="CenterAndExpand"
+                                            HorizontalOptions="End"
+                                            TextColor="#32CD32"
+                                            FontAttributes="None"
+                                            Text="{Binding amount_to_pay }"/>
+                                </Grid>
+                            
+                                <BoxView
+                                    HeightRequest="1"
+                                    Margin="8,0,0,0"
+                                    HorizontalOptions="Fill"
+                                    Color="{StaticResource ButtonBackGround}"/>
+
+                             </StackLayout>
+                        </pancake:PancakeView>
+                             </StackLayout>
+                     </DataTemplate>
+                 </CollectionView.ItemTemplate>
+            </CollectionView>
+            </RefreshView>
+
+             <StackLayout Orientation="Vertical" Grid.Row="3"
+                         IsVisible="true"
+                         x:Name="emptyListLayout"
+                         VerticalOptions="CenterAndExpand">
+
+                 <pancake:PancakeView
+                        BackgroundColor="{StaticResource ButtonBackGround}"
+                        Border="{pancake:BorderMarkup Color=#ffffff, Thickness='1'}"
+                        CornerRadius="4"
+                        HeightRequest="50"
+                        Padding="20,0,20,0"
+                        HorizontalOptions="CenterAndExpand">
+                      <pancake:PancakeView.GestureRecognizers>
+                          <TapGestureRecognizer Command="{Binding EmptyPending}" />
+                      </pancake:PancakeView.GestureRecognizers>
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="20"
+                                HorizontalOptions="CenterAndExpand"
+                                Text="Retry"
+                                TextColor="White"
+                                VerticalOptions="CenterAndExpand" />
+
+                   </pancake:PancakeView>
+                 <Label
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        x:Name="emptyList"
+                        VerticalOptions="StartAndExpand"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="No Pending Jobs Available"
+                        TextColor="{StaticResource ButtonBackGround}" />
+            </StackLayout>
+        </Grid>
+    </Grid>
+</ContentPage>
